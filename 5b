@@ -1,0 +1,25 @@
+#include <unistd.h>
+#include <iostream>
+#include <signal.h>
+#include <cstdlib>
+
+using namespace std;
+
+void floaterror(int signal)
+{
+    cout << "Floating Point Exeception Occured"<<endl;
+    exit(0);
+}
+void sigtermerror(int signal)
+{
+    cout << "SIGTERM signal Caught"<<endl;
+    exit(0);
+}
+int main(int argc, char const *argv[])
+{
+    int sign;
+    signal(SIGFPE,floaterror);
+    signal(SIGTRAP,sigtermerror);
+    while(1);
+    return 0;
+}
